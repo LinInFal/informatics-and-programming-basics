@@ -66,4 +66,3 @@ if errors:
         print(f"- {error}")
 else:
     print("Пароль надежен")
-

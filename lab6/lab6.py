@@ -1,46 +1,31 @@
 print("=======Задание №1=======")
-# def hms_convert(num, time1, time2):
-#     time_dict = {'s': 1, 'm': 60, 'h': 3600}
-#
-#     num_in_seconds = int(num) * time_dict[time1]
-#     converted_time = num_in_seconds / time_dict[time2]
-#     return round(converted_time, 3)
-#
-# num, time1, time2 = map(str, input().split())
-# res = hms_convert(num, time1, time2)
-# print(f"{res}{time2}")
+def hms_convert(num, time1, time2):
+    time_dict = {'s': 1, 'm': 60, 'h': 3600}
+
+    num_in_seconds = int(num) * time_dict[time1]
+    converted_time = num_in_seconds / time_dict[time2]
+    return round(converted_time, 3)
+
+num, time1, time2 = map(str, input().split())
+res = hms_convert(num, time1, time2)
+print(f"{res}{time2}")
 
 print("=======Задание №2=======")
 def calculate_profit(deposit, years):
     if deposit < 30000:
         print("Мин. вклад должен быть не меньше 30000")
 
-    if 30000 <= deposit < 40000:
-        percent = 0
-    elif deposit < 50000:
-        percent = 0.003
-    elif deposit < 60000:
-        percent = 0.006
-    elif deposit < 70000:
-        percent = 0.009
-    elif deposit < 80000:
-        percent = 0.012
-    elif deposit < 90000:
-        percent = 0.015
-    elif deposit < 100000:
-        percent = 0.018
-    else:
-        percent = 0.05
-
     if years <= 3:
-        total_percent = 0.03 + percent
-    elif years <= 6:
-        total_percent = 0.05 + percent
+        base_percent = 3.0
+    elif 4 <= years <= 6:
+        base_percent = 5.0
     else:
-        total_percent = 0.02 + percent
+        base_percent = 2.0
 
-    final_sum = deposit * ((1 + total_percent) ** years)
-    print(final_sum)
+    additional_percent = min((deposit // 10000) * 0.3, 5.0)
+    total_percent = base_percent + additional_percent
+
+    final_sum = deposit * (1 + total_percent / 100) ** years
     profit = final_sum - deposit
     return round(profit, 2)
 
@@ -72,15 +57,63 @@ print(print_primes_in_range(1, 10))
 print(print_primes_in_range(15, 120))
 
 print("=======Задание №4=======")
+def matrix_addition(size, matrix1, matrix2):
+    if size < 2:
+        return "Error!"
 
+    # Проверка, что обе матрицы имеют размерность size x size
+    if any(len(row) != size for row in matrix1) or any(len(row) != size for row in matrix2):
+        return "Error!"
+
+    res_matrix = []
+    for i in range(size):
+        row = []
+        for j in range(size):
+            # Складываем элементы матриц
+            row.append(matrix1[i][j] + matrix2[i][j])
+        res_matrix.append(row)
+    return res_matrix
+
+size1 = 2
+matrix1_1 = [
+    [2, 5],
+    [5, 3]
+]
+matrix2_1 = [
+    [5, 2],
+    [4, 1]
+]
+print(matrix_addition(size1, matrix1_1, matrix2_1))
+
+size2 = 3
+matrix1_2 = [
+    [0, -1, 4],
+    [6, 12, -4],
+    [4, 1, 10]
+]
+matrix2_2 = [
+    [5, 1, 12],
+    [-4, 2, -8],
+    [0, 1, 4]
+]
+print(matrix_addition(size2, matrix1_2, matrix2_2))
+
+size3 = 1
+matrix1_3 = [
+    [4]
+]
+matrix2_3 = [
+    [5]
+]
+print(matrix_addition(size3, matrix1_3, matrix2_3))
 
 print("=======Задание №5=======")
-# def is_palindrome(s):
-#     lower_string = ''.join(s.split()).lower()
-#     if lower_string == lower_string[::-1]:
-#         return 'Да'
-#     else:
-#         return 'Нет'
-#
-# res = is_palindrome(input())
-# print(res)
+def is_palindrome(s):
+    lower_string = ''.join(s.split()).lower()
+    if lower_string == lower_string[::-1]:
+        return 'Да'
+    else:
+        return 'Нет'
+
+res = is_palindrome(input())
+print(res)
