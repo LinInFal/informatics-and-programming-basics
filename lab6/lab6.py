@@ -9,6 +9,9 @@ def hms_convert(num, time1, time2):
 num, time1, time2 = map(str, input().split())
 res = hms_convert(num, time1, time2)
 print(f"{res}{time2}")
+num, time1, time2 = map(str, input().split())
+res = hms_convert(num, time1, time2)
+print(f"{res}{time2}")
 
 print("=======Задание №2=======")
 def calculate_profit(deposit, years):
@@ -29,9 +32,8 @@ def calculate_profit(deposit, years):
     profit = final_sum - deposit
     return round(profit, 2)
 
-print(calculate_profit(30000, 3))
-print(calculate_profit(100000, 5))
-print(calculate_profit(200000, 8))
+deposit, years = map(int, input().split())
+print(calculate_profit(deposit, years))
 
 print("=======Задание №3=======")
 def print_primes_in_range(start, end):
@@ -97,15 +99,6 @@ matrix2_2 = [
     [0, 1, 4]
 ]
 print(matrix_addition(size2, matrix1_2, matrix2_2))
-
-size3 = 1
-matrix1_3 = [
-    [4]
-]
-matrix2_3 = [
-    [5]
-]
-print(matrix_addition(size3, matrix1_3, matrix2_3))
 
 print("=======Задание №5=======")
 def is_palindrome(s):
