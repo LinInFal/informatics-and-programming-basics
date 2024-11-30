@@ -1,8 +1,7 @@
-import random
-import sys
-import colorama
-import time
-from art import *
+from random import randint, random
+from sys import exit as sys_exit
+from time import sleep as time_sleep
+from art import tprint
 
 """Цвета для colorama
 Чёрный      30  40
@@ -18,16 +17,16 @@ from art import *
 def game_exit(x):
     if x == 1:
         tprint("GAME OVER", font="cybermedium")
-        sys.exit()
+        sys_exit()
     elif x == 0:
-        sys.exit()
+        sys_exit()
 
 def loading(t):
     states = ['\r/', '\r—', '\r\\', '\r|']
     for _ in range(t):
         for j in states:
             print(f'{j} Загрузка', end='')
-            time.sleep(0.25)
+            time_sleep(0.25)
     print('\r', end='')
 
 def conscience_say(text):
@@ -42,9 +41,9 @@ def current_stats(x):
 def create_character():
     name = input("\033[36mВведите своё имя: \033[0m\n> ")
     stats = {
-        "Атака": random.randint(7, 10),
-        "Защита": random.randint(7, 10),
-        "Здоровье": random.randint(20, 30)
+        "Атака": randint(7, 10),
+        "Защита": randint(7, 10),
+        "Здоровье": randint(20, 30)
     }
     print("\033[36mВаши начальные характеристики:\033[0m")
     for stat, value in stats.items():
@@ -145,7 +144,7 @@ def battle(player, enemy):
         choice = input("> ")
 
         if choice == "1":
-            if random.random() > enemy["Уклонение"]:
+            if random() > enemy["Уклонение"]:
                 damage = max(0, (player["Атака"] + player["Бонусы"]["Атака"]) - enemy["Защита"])
                 enemy["Здоровье"] -= damage
                 print(f"\033[36mВы нанесли {damage} урона {enemy['Имя']}. Осталось здоровья: {enemy['Здоровье']}\033[0m")
@@ -164,7 +163,7 @@ def battle(player, enemy):
                     print("\033[36mЭто не зелье.\033[0m")
                 continue
         elif choice == "3":
-            if random.random() < (0.5 + player["Бонусы"]["Уклонение"]):
+            if random() < (0.5 + player["Бонусы"]["Уклонение"]):
                 print("\033[36mВам удалось уклониться от атаки!\033[0m")
                 continue
             else:
