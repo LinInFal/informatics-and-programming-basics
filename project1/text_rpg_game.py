@@ -3,6 +3,10 @@ from sys import exit as sys_exit
 from time import sleep as time_sleep
 from art import tprint
 
+"""
+Текстовая RPG-игра
+"""
+
 """Цвета для colorama
 Чёрный      30  40
 Красный     31  41
